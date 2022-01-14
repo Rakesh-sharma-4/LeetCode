@@ -1,0 +1,47 @@
+class Solution {
+    public String[] findWords(String[] words) {
+        List<String> list=new ArrayList();
+        for(String word: words)
+        {
+            char c=word.charAt(0);
+            int flag=1;
+            if("QWERTYUIOPqwertyuiop".contains(c+""))
+            {
+                for(int i=1;i<word.length();i++)
+                {
+                    if(!"QWERTYUIOPqwertyuiop".contains(word.charAt(i)+""))
+                    {
+                        flag=0;
+                        break;
+                    }
+                }
+            }
+            if("ASDFGHJKLasdfghjkl".contains(c+""))
+            {
+                for(int i=1;i<word.length();i++)
+                {
+                    if(!"ASDFGHJKLasdfghjkl".contains(word.charAt(i)+""))
+                    {
+                        flag=0;
+                        break;
+                    }
+                }
+            }
+            if("ZXCVBNMzxcvbnm".contains(c+""))
+            {
+                for(int i=1;i<word.length();i++)
+                {
+                    if(!"ZXCVBNMzxcvbnm".contains(word.charAt(i)+""))
+                    {
+                        flag=0;
+                        break;
+                    }
+                }
+            }
+            if(flag==1)
+                list.add(word);
+        }
+        String[] arr=list.toArray(new String[0]);
+        return arr;
+    }
+}
