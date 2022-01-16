@@ -1,0 +1,16 @@
+class Solution {
+    public int[] numberOfLines(int[] widths, String s) {
+        int lines=1;
+        int pixel=0;
+        for(int i=0;i<s.length();i++)
+        {
+            pixel+=widths[s.charAt(i)-'a'];
+            if(pixel>100)
+            {
+                pixel=widths[s.charAt(i)-'a'];
+                lines++;
+            }
+        }
+        return new int[]{lines,pixel};
+    }
+}
