@@ -1,0 +1,25 @@
+class Solution {
+    public ListNode reverseBetween(ListNode head, int left, int right) {
+        if(left==right)
+            return head;
+        ListNode sentinal=new ListNode(0,head);
+        ListNode leftPrev=sentinal;
+        ListNode curr=head;
+        for(int i=0;i<left-1;i++)
+        {
+            leftPrev=curr;
+            curr=curr.next;
+        }
+        ListNode prev=null;
+        for(int i=0;i<right-left+1;i++)
+        {
+            ListNode temp=curr;
+            curr=curr.next;
+            temp.next=prev;
+            prev=temp;
+        }
+        leftPrev.next.next=curr;
+        leftPrev.next=prev;
+        return sentinal.next;
+    }
+}
