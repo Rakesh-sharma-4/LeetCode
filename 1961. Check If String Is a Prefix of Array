@@ -1,0 +1,15 @@
+class Solution {
+    public boolean isPrefixString(String s, String[] words) {
+        int i=0;
+        for(String word: words)
+        {
+            if(s.startsWith(word,i))
+                i+=word.length();
+            else
+                return false;
+            if(i==s.length())
+                return true;
+        }
+        return i==s.length();
+    }
+}
