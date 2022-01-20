@@ -1,0 +1,22 @@
+class Solution {
+    public int minTimeToType(String word) {
+        int count=0;
+        char b='a';
+        for(int i=0;i<word.length();i++)
+        {
+            if(i==0 && word.charAt(i)=='a')
+            {
+                count++;
+                continue;
+            }
+            char a=word.charAt(i);
+            int sub=Math.abs(a-b);
+            if(sub>13)
+                sub=26-sub;
+            count+=sub;
+            count++;
+            b=a;
+        }
+        return count;
+    }
+}
