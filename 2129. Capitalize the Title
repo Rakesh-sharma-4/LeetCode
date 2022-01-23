@@ -1,0 +1,22 @@
+class Solution {
+    public String capitalizeTitle(String title) {
+        String[] arr=title.split(" ");
+        StringBuilder sb=new StringBuilder();
+        for(String s:arr)
+        {
+            if(s.length()>2)
+            {
+                s=s.toLowerCase();
+                String str=s.substring(0,1);
+                sb.append(str.toUpperCase());
+                sb.append(s.substring(1)+" ");          
+            }
+            else
+            {
+                s=s.toLowerCase();
+                sb.append(s+" ");
+            }
+        }
+        return sb.toString().trim();
+    }
+}
