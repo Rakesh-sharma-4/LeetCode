@@ -1,0 +1,21 @@
+class Solution {
+    public int[] distributeCandies(int candies, int num_people) {
+        int sumcandies[]=new int[num_people];
+        int a=1;
+        int i=0;
+        while(candies!=0)
+        {
+            if(candies-a>=0)
+            {
+                sumcandies[i++%num_people]+=a;
+            }
+            else
+            {
+                sumcandies[i%num_people]+=candies;
+                break;
+            }
+            candies-=a++;
+        }
+        return sumcandies;
+    }
+}
