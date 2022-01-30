@@ -1,0 +1,11 @@
+class Solution {
+    public int findFinalValue(int[] nums, int original) {
+         int num=original;
+         HashSet<Integer> set=new HashSet();
+         for(int a:nums)
+             set.add(a);
+         while(set.contains(num))
+             num*=2;
+         return num;
+    }
+}
