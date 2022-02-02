@@ -1,0 +1,28 @@
+class Solution {
+    public List<Integer> findAnagrams(String s, String p) {
+        List<Integer> list=new ArrayList();
+        int[] freq1=new int[26];
+        for(char ch: p.toCharArray())
+        {
+            freq1[ch-'a']++;
+        }
+        for(int i=0;i<s.length()-p.length()+1;i++)
+        {
+            int flag=1;
+            String ss=s.substring(i,i+p.length());
+            int[] freq2=new int[26];
+            for(char ch:ss.toCharArray())
+            {
+                freq2[ch-'a']++;
+            }
+            for(int j=0;j<26;j++)
+            {
+                if(freq1[j]!=freq2[j])
+                    flag=0;
+            }
+            if(flag==1)
+                list.add(i);
+        }
+        return list;
+    }
+}
