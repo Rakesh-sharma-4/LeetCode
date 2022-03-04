@@ -1,0 +1,45 @@
+class Solution {
+    public int numMatchingSubseq(String s, String[] words) {
+        HashSet<String> alreadySequence=new HashSet();
+        HashSet<String> noSequence=new HashSet();
+        int count=0;
+        for(String word:words)
+        {
+            if(noSequence.contains(word))
+            {
+                continue;
+            }
+            if(alreadySequence.contains(word))
+            {
+                count++;
+                continue;
+            }
+            if(isSequence(s,word))
+            {
+                count++;
+                alreadySequence.add(word);
+            }
+            else
+            {
+                noSequence.add(word);
+            }
+        }
+        return count;
+    }
+    public boolean isSequence(String s, String word)
+    {
+        if(word.length()==0)
+            return true;
+        int j=0;
+        for(int i=0;i<s.length();i++)
+        {
+            if(s.charAt(i)==word.charAt(j))
+            {
+                j++;
+                if(j==word.length())
+                    return true;
+            }
+        }
+        return false;
+    }
+}
