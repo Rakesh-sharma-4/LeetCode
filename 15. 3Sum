@@ -1,0 +1,38 @@
+// could be confusion little bit confusing.... Put a comment 
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> list=new ArrayList();
+        for(int indx1=0;indx1+2<nums.length;indx1++)
+        {
+            if(indx1>0 && nums[indx1]==nums[indx1-1])
+                continue;
+            int indx2=indx1+1;
+            int indx3=nums.length-1;
+            while(indx2<indx3)
+            {
+                int sum=nums[indx1]+nums[indx2]+nums[indx3];
+                if(sum==0)
+                {
+                    List<Integer> templist=new ArrayList();
+                    templist.add(nums[indx1]);
+                    templist.add(nums[indx2]);
+                    templist.add(nums[indx3]);
+                    list.add(templist);
+                    indx3--;
+                    while(indx2<indx3 && nums[indx3]==nums[indx3+1])
+                      indx3--;
+                }
+                else if(sum>0)
+                {
+                    indx3--;
+                }
+                else
+                {
+                    indx2++;
+                }
+            }
+        }
+        return list;
+    }
+}
