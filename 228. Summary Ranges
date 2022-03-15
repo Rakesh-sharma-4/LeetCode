@@ -1,0 +1,36 @@
+class Solution
+{
+    public List<String> summaryRanges(int[] nums)
+    {
+        List<String> list =new ArrayList();
+        if(nums.length==1)
+        {
+            list.add(nums[0]+"");
+        }
+        for(int i=1;i<nums.length;i++)
+        {
+            StringBuilder sb=new StringBuilder();
+            int a=nums[i-1];
+            int b=Integer.MIN_VALUE;
+            while(i<nums.length && nums[i-1]+1==nums[i])
+            {
+                b=nums[i];
+                i++;
+            }
+            if(b==Integer.MIN_VALUE)
+            {
+                sb.append(a);
+            }
+            else
+            {
+                sb.append(a+"->"+b);
+            }
+            list.add(sb.toString());
+            if(i==nums.length-1 && b!=nums[nums.length-1])
+            {
+                list.add(nums[i]+"");
+            }
+        }
+        return list;
+    }
+}
