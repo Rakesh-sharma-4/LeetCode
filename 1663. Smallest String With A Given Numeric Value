@@ -1,0 +1,25 @@
+class Solution {
+    public String getSmallestString(int n, int k) {
+        char[] arr=new char[n];
+        for(int i=0;i<n;i++)
+        {
+            arr[i]='a';
+        }
+        k-=n;
+        if(k>0)
+        {
+            int j=n-1;
+            while((k+1)>=26)
+            {
+                arr[j]='z';
+                k-=25;
+                j--;
+            }
+            if(k>0)
+            {
+                arr[j]=(char)(97+k);
+            }
+        }
+        return new String(arr);
+    }
+}
