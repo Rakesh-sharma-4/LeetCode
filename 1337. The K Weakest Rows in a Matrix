@@ -1,0 +1,40 @@
+class Solution {
+    public int[] kWeakestRows(int[][] mat, int k) {
+        int len=mat.length;
+        int[][] arr=new int[len][2];
+        int index=0;
+        for(int[] row:mat)
+        {
+            int sum=0;
+            for(int i=0;i<row.length;i++)
+            {
+                sum+=row[i];
+                if(row[i]==0)
+                    break;
+            }
+            arr[index][0]=index;
+            arr[index][1]=sum;
+            index++;
+        }
+        sortArray(arr);
+        int[] ans=new int[k];
+        for(int i=0;i<k;i++)
+        {
+            ans[i]=arr[i][0];
+        }
+        return ans;
+    }
+    public static void sortArray(int arr[][])
+    {
+        Arrays.sort(arr, new Comparator<int[]>()
+        {
+            public int compare(int[] arr1,int[] arr2)
+            {
+                if(arr1[1]>=arr2[1])
+                    return 1;
+                else
+                    return -1;
+            }
+        });
+    }
+}
