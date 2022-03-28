@@ -1,0 +1,42 @@
+class Solution
+{
+    public boolean search(int[] nums, int target)
+    {
+        int left=0;
+        int right=nums.length-1;
+        while(left<=right)
+        {
+            int mid=left+(right-left)/2;
+            if(nums[mid]==target)
+                return true;
+            else if(nums[mid]==nums[left] && nums[mid]==nums[right]) // if both elements are same
+            {
+                left++;
+                right--;
+            }
+            else if(nums[mid]>=nums[left]) //left sorted Array
+            { 
+                if(target>=nums[left] && target<nums[mid]) // wheater target is present in left side 
+                {
+                    right=mid-1;
+                }
+                else // target is present in right side
+                {
+                    left=mid+1;
+                }
+            }
+            else // right sorted array
+            {
+                if(target>nums[mid] && target<=nums[right]) // wheather target is present in right side
+                {
+                    left=mid+1;
+                }
+                else // target is present in left side
+                {
+                    right=mid-1;
+                }
+            }
+        }
+        return false;
+    }
+}
