@@ -1,0 +1,29 @@
+class Solution {
+    public List<List<Integer>> findWinners(int[][] matches) {
+        List<List<Integer>> list=new ArrayList();
+        HashSet<Integer> win=new HashSet();
+        HashMap<Integer,Integer> loss=new HashMap();
+        for(int[] arr:matches)
+        {
+            win.add(arr[0]);
+            loss.put(arr[1],loss.getOrDefault(arr[1],0)+1);
+        }
+        List<Integer> lost=new ArrayList();
+        List<Integer> wins=new ArrayList();
+        for(int key: win)
+        {
+            if(!loss.containsKey(key))
+                wins.add(key);
+        }
+        for(int key:loss.keySet())
+        {
+            if(loss.get(key)==1)
+                lost.add(key);
+        }
+        Collections.sort(wins);
+        Collections.sort(lost);
+        list.add(wins);
+        list.add(lost);
+        return list;
+    }
+}
