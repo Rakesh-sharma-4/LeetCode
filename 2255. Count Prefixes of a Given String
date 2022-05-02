@@ -1,0 +1,16 @@
+class Solution {
+    public int countPrefixes(String[] words, String s) {
+        int count=0;
+        HashSet<String> set=new HashSet();
+        for(int i=0;i<s.length();i++)
+        {
+            set.add(s.substring(0,i+1));
+        }
+        for(String word:words)
+        {
+            if(set.contains(word))
+                count++;
+        }
+        return count;
+    }
+}
