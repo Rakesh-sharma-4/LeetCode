@@ -1,0 +1,25 @@
+class Solution {
+    public boolean canJump(int[] nums) {
+        int len=nums.length;
+        if(nums[0]==0 && len>1)
+            return false;
+        int dp[]=new int[len];
+        dp[0]=nums[0];
+        for(int i=1;i<len;i++)
+        {
+            if(nums[i]>=dp[i-1])
+            {
+                dp[i]=nums[i];
+                if(dp[i]==0 && i!=len-1)
+                    return false;
+            }
+            else
+            {
+                dp[i]=dp[i-1]-1;
+                if(dp[i]==0 && i!=len-1)
+                    return false;
+            }
+        }
+        return true;
+    }
+}
