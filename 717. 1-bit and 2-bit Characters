@@ -1,0 +1,17 @@
+class Solution {
+    public boolean isOneBitCharacter(int[] bits) {
+        int i=0;
+        while(i<bits.length-1)
+        {
+            if(bits[i]==1) // if bit is 1 jump by 2
+            {
+                i+=2;
+            }
+            else // if bit it zero jump by 1
+            {
+                i+=1;
+            }
+        }
+        return i==bits.length-1; // at last check whether we are at last position or not.
+    }
+}
