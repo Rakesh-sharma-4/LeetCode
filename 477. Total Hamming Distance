@@ -1,0 +1,22 @@
+class Solution {
+    public int totalHammingDistance(int[] nums) {
+        int count=0;
+        int[] freq=new int[32];
+        int len=nums.length;
+        for(int num:nums)
+        {
+            for(int i=0;i<32;i++)
+            {
+                freq[i]+=num&1;
+                num>>=1;
+                if(num==0)
+                    break;
+            }
+        }
+        for(int i=0;i<32;i++)
+        {
+            count+=freq[i]*(len-freq[i]);
+        }
+        return count;
+    }
+}
