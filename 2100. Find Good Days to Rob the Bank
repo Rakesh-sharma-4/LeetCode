@@ -1,0 +1,32 @@
+class Solution {
+    public List<Integer> goodDaysToRobBank(int[] security, int time) {
+        List<Integer> list=new ArrayList();
+        int n=security.length;
+        int[] non_inc=new int[n];
+        non_inc[0]=0;
+        int[] non_dec=new int[n];
+        non_dec[n-1]=0;
+        for(int i=1;i<n;i++)//Array to store no. of non_inc days before a day
+        {
+            if(security[i-1]>=security[i])
+            {
+                non_inc[i]=non_inc[i-1]+1;
+            }
+        }
+        for(int i=n-2;i>=0;i--)// Array to store no. of non_dec days after a day
+        {
+            if(security[i]<=security[i+1])
+            {
+                non_dec[i]=non_dec[i+1]+1;
+            }
+        }
+        for(int i=0;i<n;i++)// to check wheather a days statisfy condition or not
+        {
+            if(non_dec[i]>=time && non_inc[i]>=time)
+            {
+                list.add(i);
+            }
+        }
+        return list;
+    }
+}
