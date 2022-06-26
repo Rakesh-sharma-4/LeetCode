@@ -1,0 +1,19 @@
+class Solution {
+    public int maxScore(int[] cardPoints, int k) {
+        int len=cardPoints.length;
+        int maxSum=0;
+        int sum=0;
+        for(int i=len-k;i<len;i++) //Sum of last k elements
+        {
+            sum+=cardPoints[i];
+        }
+        maxSum=Math.max(sum,maxSum);
+        for(int i=len-k+1;i<len+1;i++)
+        {
+            sum-=cardPoints[(i-1)%len];// subtract previous element from sum
+            sum+=cardPoints[(i+k-1)%len]; // add next element of subarray to sum
+            maxSum=Math.max(sum,maxSum); // check which sum is greater
+        }
+        return maxSum;
+    }
+}
