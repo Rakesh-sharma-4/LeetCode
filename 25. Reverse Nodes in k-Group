@@ -1,0 +1,51 @@
+class Solution {
+    public ListNode reverseKGroup(ListNode head, int k) {
+        if(k==1 || head==null || head.next==null)
+            return head;
+        int n=length(head)/k; // no. of time do we need to reverse the linked list
+        ListNode temp=head;// for send as an argument to reverse function
+        ListNode senital =new ListNode(0,head); // for returning address of head
+        ListNode prev=senital;// to add reverse linked list
+        ListNode nxt=head; // keep the address where to join end of reverse linked list
+        while(n!=0)
+        {
+            for(int i=0;i<k;i++)
+            {
+                nxt=nxt.next;
+            }
+            prev.next=reverse(temp,k);
+            while(prev.next!=null)
+            {
+                prev=prev.next;
+            }
+            prev.next=nxt;
+            temp=nxt;
+            n--;
+        }
+        return senital.next;
+    }
+    public int length(ListNode node) // find the length of linkedlist to find out how many we have to reverse linked list
+    {
+        int l=0;
+        while(node!=null)
+        {
+            l++;
+            node=node.next;
+        }
+        return l;
+    }
+    public ListNode reverse(ListNode node,int k) // Reverse linked list of k length
+    {
+        ListNode prev=null,curr=node;
+        int i=0;
+        while(i<k)
+        {
+            ListNode temp=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=temp;
+            i++;
+        }
+        return prev;
+    }
+}
